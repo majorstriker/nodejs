@@ -1,20 +1,21 @@
-const http = require('http');
-const server = http.createServer((req, res) => {
-    console.log('Запрос получен');
+let endings = ["mail.ru", "list.ru", "rambler.ru", "yandex.ru", "gmail.com"],
+    symbols = "qwertyuiopasdfghjklzxcvbnm1234567890";
 
-    if (req.url === '/') {
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-        res.end('<a href="/about"><b>Обо мне</b></a>');
-    } else if (req.url === '/about') {
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-        res.end('<a href="/"><b>Главная страница</b></a>');
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
-        res.end('<h1>Страница 404</h1>');
-    }
-});
-const port = 3000;
+function rand(min, max) {
+    return (min + Math.random() * (max - min + 1)) | 0
+}
 
-server.listen(port, () => {
-    console.log(`Сервер запущен на порту ${port}`);
-});
+function getRandomStr(len) {
+    let ret = ""
+    for (let i = 0; i < len; i++)
+        console.log(ret += symbols[rand(0, symbols.length - 1)]);
+    return ret;
+}
+
+function getEmail() {
+    let a = getRandomStr(rand(3, 5)),
+        b = getRandomStr(rand(3, 5));
+    return a + "." + b + "@" + endings[rand(0, endings.length - 1)];
+}
+
+module.exports = { getEmail }

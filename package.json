@@ -1,0 +1,12 @@
+{
+    "name": "aleksander_random_email_generator",
+    "version": "2.0.0",
+    "description": "Generates random email address",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./index.js"
+    },
+    "keywords": [],
+    "author": "Aleksander Davidovich",
+    "license": "ISC"
+}
